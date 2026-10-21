@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#08152f"><title>Mật khẩu giải nén | KM MOD FF</title>
+<style>
+:root{color-scheme:dark;--bg:#071329;--card:#263f76;--line:#7ca9ef;--text:#f6f8ff;--muted:#d2def5;--panel:#10264c;--accent:#e7f4ff}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 5%,#263f7d 0,#0c1d3c 42%,#061126 100%);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--text);display:flex;justify-content:center;align-items:flex-start;padding:28px 14px 36px}
+.wrap{width:100%;max-width:590px}.brand{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:800;letter-spacing:1.5px;padding:5px 7px 15px;color:#e4edff}.brand span:last-child{color:#a9c8ff}
+.card{border:1px solid #7897d1;border-radius:30px;padding:28px 24px 24px;background:linear-gradient(155deg,rgba(67,91,153,.97),rgba(27,49,91,.98) 55%,rgba(15,35,69,.99));box-shadow:0 18px 55px #0007,inset 0 1px 0 #ffffff36}
+.lock{width:64px;height:64px;border-radius:22px;display:grid;place-items:center;background:linear-gradient(145deg,#387bc4,#254f91);border:1px solid #8bbdff80;box-shadow:inset 0 1px 0 #ffffff50;margin-bottom:28px}.lock svg{width:30px;height:30px}
+h1{font-size:clamp(27px,7vw,36px);line-height:1.15;margin:0 0 14px;letter-spacing:-1px} .sub{margin:0 0 28px;color:#e0e8fb;line-height:1.55;font-size:15px}
+.panel{background:rgba(5,24,57,.63);border:1px solid #91b7f5a6;border-radius:20px;padding:20px;margin:17px 0}.label{font-size:11px;font-weight:900;letter-spacing:1.7px;color:#dbe8ff;margin-bottom:12px}.filename{font-size:16px;font-weight:750;overflow-wrap:anywhere;line-height:1.5}.meta{margin-top:14px;color:#d9e5fa;font-size:13px;line-height:1.65}.dot{color:#9df5e4;margin-right:7px}.passwordbox{background:rgba(5,24,57,.44);border:1px solid #8bb4f4;border-radius:20px;padding:20px;margin-top:28px}.password-label{font-size:13px;color:#e0eaff;margin-bottom:13px}.password{font-size:18px;font-weight:800;letter-spacing:.2px;line-height:1.6;overflow-wrap:anywhere;user-select:all}.copy{width:100%;border:0;border-radius:15px;margin-top:20px;padding:17px 15px;background:linear-gradient(100deg,#f4faff,#cfeeff);color:#284773;font-weight:850;font-size:16px;cursor:pointer;box-shadow:0 5px 16px #8ec8ff35}.copy:disabled{opacity:.5;cursor:not-allowed}.hint{font-size:12px;line-height:1.6;color:#d3def4;margin:18px 2px 0}.status{display:none;padding:13px 15px;margin-top:16px;border-radius:12px;background:#112b50;border:1px solid #7ca9ef;color:#eff6ff;font-size:14px;line-height:1.5}.status.show{display:block}.footer{text-align:center;color:#9fb5df;font-size:12px;margin:26px 8px 0;line-height:1.7}.hidden{display:none!important}
+@media(min-width:560px){body{padding-top:45px}.card{padding:34px 30px 28px}}
+</style></head>
+<body><main class="wrap">
+<div class="brand"><span>NghiaLq TV</span><span>VI · EN</span></div>
+<section class="card">
+<div class="lock" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10" width="15" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><path d="M12 14v3"/></svg></div>
+<h1>Mật khẩu giải nén</h1><p class="sub">Lấy mật khẩu cho file ZIP bạn đã nhận từ bot.</p>
+<div class="panel"><div class="label">FILE CỦA BẠN</div><div class="filename" id="filename">Đang tìm thông tin file…</div><div class="meta"><span class="dot">●</span><span id="expiry">Đang kiểm tra mã nhận mật khẩu</span></div></div>
+<div class="passwordbox"><div class="password-label">Mật khẩu của bạn</div><div class="password" id="password">••••••••••••••••</div><button class="copy" id="copy" disabled>Sao chép　→</button></div>
+<div class="hint">Dùng mật khẩu này để giải nén đúng file ZIP được ghi ở phía trên. Mỗi file Mod có mã nhận và mật khẩu riêng.</div>
+<div class="status" id="status" role="status"></div>
+</section><div class="footer">KM MOD FF · Trang nhận mật khẩu từ bot<br>Không chia sẻ liên kết nhận mật khẩu cho người khác.</div>
+</main>
+<script>
+// Thay bằng URL Worker sau khi triển khai, ví dụ https://km-password-api.<ten>.workers.dev
+const API_BASE = "https://YOUR-WORKER-URL.workers.dev";
+const params = new URLSearchParams(location.search);
+const id = (params.get('id') || '').trim();
+const $ = s => document.getElementById(s);
+function status(msg){$('status').textContent=msg;$('status').classList.add('show')}
+async function load(){
+ if(!/^[A-Za-z0-9_-]{6,64}$/.test(id)){ $('filename').textContent='Không tìm thấy mã nhận mật khẩu'; $('expiry').textContent='Hãy mở đúng liên kết được gửi từ bot.'; $('password').textContent='—'; status('Liên kết thiếu hoặc sai mã nhận mật khẩu.');return; }
+ if(API_BASE.includes('YOUR-WORKER-URL')){ $('filename').textContent='Chưa cấu hình máy chủ'; $('expiry').textContent='Quản trị viên cần cấu hình API_BASE trong index.html.'; $('password').textContent='—'; status('Trang giao diện đã sẵn sàng, nhưng chưa kết nối API cấp mật khẩu.');return; }
+ try{
+  const r=await fetch(`${API_BASE}/api/password?id=${encodeURIComponent(id)}`,{headers:{'Accept':'application/json'}});
+  const data=await r.json(); if(!r.ok||!data.ok) throw new Error(data.error||'Không tìm thấy mật khẩu cho mã này.');
+  $('filename').textContent=data.filename||'File Mod'; $('password').textContent=data.password; $('copy').disabled=false;
+  $('expiry').textContent=data.expiresAt ? `Có hiệu lực đến ${new Date(data.expiresAt).toLocaleString('vi-VN',{dateStyle:'short',timeStyle:'short'})}` : 'Mã nhận mật khẩu đang có hiệu lực';
+ }catch(e){$('filename').textContent='Không lấy được thông tin file';$('expiry').textContent='Mã có thể sai, hết hạn hoặc máy chủ đang bận.';$('password').textContent='—';status(e.message||'Lỗi kết nối. Vui lòng thử lại sau.');}
+}
+$('copy').addEventListener('click',async()=>{const p=$('password').textContent;try{await navigator.clipboard.writeText(p);$('copy').textContent='Đã sao chép ✓';}catch{const range=document.createRange();range.selectNodeContents($('password'));getSelection().removeAllRanges();getSelection().addRange(range);status('Hãy sao chép mật khẩu đã được chọn.');}});
+load();
+</script></body></html>
